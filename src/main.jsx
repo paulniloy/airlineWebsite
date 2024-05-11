@@ -5,8 +5,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
+import Profile from "./components/Profile/Profile"
 import Root from "./components/Root/Root";
 import Homepage from "./components/Homepage/Homepage";
+import Bookings from "./components/Bookings/Bookings";
+import Mybookings from "./components/Mybookings/Mybookings";
+import Login from "./components/Login/Login";
+import Logout from "./components/Logout/Logout";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +21,28 @@ const router = createBrowserRouter([
       {
         path : "/",
         element : <Homepage></Homepage>,
+      },
+      {
+        path : "/profile",
+        element : <Profile></Profile>,
+      },
+      {
+        path : "/bookings",
+        element : <Bookings></Bookings>,
+      },
+      {
+        path : "/mybookings",
+        element : <Mybookings></Mybookings>,
+      },
+      {
+        path : "/login",
+        element : <Login></Login>,
+      },
+      {
+        path : "/logout",
+        element : <Logout></Logout>,
       }
+      
     ]
   },
 ]);
