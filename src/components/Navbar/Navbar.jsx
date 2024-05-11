@@ -14,6 +14,7 @@ const Navbar = () => {
         <Link className='hover:text-yellow-400 transition delay-100' to={"/bookings"}>Bookings</Link>
         <Link className='hover:text-yellow-400 transition delay-100' to={"/login"}>Login</Link>
         <Link className='hover:text-yellow-400 transition delay-100' to={"/logout"}>Logout</Link>
+        <Link className='hover:text-yellow-400 transition delay-100' to={"/register"}>Register</Link>
       </div>
     </div>
   );

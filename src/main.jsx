@@ -12,6 +12,7 @@ import Bookings from "./components/Bookings/Bookings";
 import Mybookings from "./components/Mybookings/Mybookings";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
+import Register from "./components/Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path : "/logout",
         element : <Logout></Logout>,
+      },
+      {
+        path : "/register",
+        element : <Register></Register>,
       }
       
     ]
