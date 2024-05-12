@@ -13,47 +13,50 @@ import Mybookings from "./components/Mybookings/Mybookings";
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Register from "./components/Register/Register";
+import Authprovider from "./components/Authprovider/Authprovider";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    children : [
+    children: [
       {
-        path : "/",
-        element : <Homepage></Homepage>,
+        path: "/",
+        element: <Homepage></Homepage>,
       },
       {
-        path : "/profile",
-        element : <Profile></Profile>,
+        path: "/profile",
+        element: <Profile></Profile>,
       },
       {
-        path : "/bookings",
-        element : <Bookings></Bookings>,
+        path: "/bookings",
+        element: <Bookings></Bookings>,
       },
       {
-        path : "/mybookings",
-        element : <Mybookings></Mybookings>,
+        path: "/mybookings",
+        element: <Mybookings></Mybookings>,
       },
       {
-        path : "/login",
-        element : <Login></Login>,
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path : "/logout",
-        element : <Logout></Logout>,
+        path: "/logout",
+        element: <Logout></Logout>,
       },
       {
-        path : "/register",
-        element : <Register></Register>,
+        path: "/register",
+        element: <Authprovider><Register></Register></Authprovider>,
       }
-      
+
     ]
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Authprovider>
+      <RouterProvider router={router} />
+    </Authprovider>
   </React.StrictMode>
 );

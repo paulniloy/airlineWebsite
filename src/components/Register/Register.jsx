@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../Authprovider/Authprovider';
 
 const Register = () => {
 
     const [checked, setchecked] = useState('false')
     console.log(checked);
+
+    const user = useContext(AuthContext);
+    console.log(user);
 
 
     const handlesubmit = event => {
