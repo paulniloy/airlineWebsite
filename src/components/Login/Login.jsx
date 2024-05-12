@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../Authprovider/Authprovider';
+import "./login.css"
+import { SiGroupon } from "react-icons/si";
+import { Link } from 'react-router-dom';
+
+
 
 const Login = () => {
 
+    const { googlelogin } = useContext(AuthContext)
 
     const [loginchecked, setloginchecked] = useState('false')
     console.log(loginchecked);
@@ -38,6 +45,10 @@ const Login = () => {
                         <h1>show password</h1>
                     </div>
                     <button type="submit" className='bg-primary w-1/2 flex justify-center mt-5 mx-auto rounded-sm'>Login</button>
+                    <div className='flex justify-center mt-5'>
+                        <button onClick={googlelogin}><SiGroupon className="h-5 w-5" /></button>
+                    </div>
+                    <h1>Don't have an account? <Link to={"/register"}>Register</Link></h1>
                 </form>
             </div>
         </div>
