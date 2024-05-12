@@ -13,7 +13,6 @@ const Login = () => {
     const [loginchecked, setloginchecked] = useState(false)
     const [loginerrormessage, seterrormessage] = useState('')
     const [loginloggedmessage, setloggedmessage] = useState('')
-    console.log(loginchecked);
 
 
     const handlesubmit = event => {

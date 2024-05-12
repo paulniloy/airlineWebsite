@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Authprovider/Authprovider';
 
 const Navbar = () => {
+
+  const {signout,setuser, user} = useContext(AuthContext);
+
+
+  const handlesignout = () =>{
+    signout()
+    .then(()=>{
+      setuser(null)
+    })
+    .catch(()=>{
+
+    })
+  }
+
+
+
   return (
     <div className='flex justify-around bg-black h-10'>
       <div className='flex justify-center items-center'>
@@ -12,9 +29,14 @@ const Navbar = () => {
         <Link className='hover:text-yellow-400 transition delay-100' to={"/profile"}>Profile</Link>
         <Link className='hover:text-yellow-400 transition delay-100' to={"/mybookings"}>My Bookings</Link>
         <Link className='hover:text-yellow-400 transition delay-100' to={"/bookings"}>Bookings</Link>
-        <Link className='hover:text-yellow-400 transition delay-100' to={"/login"}>Login</Link>
-        <Link className='hover:text-yellow-400 transition delay-100' to={"/logout"}>Logout</Link>
-        <Link className='hover:text-yellow-400 transition delay-100' to={"/register"}>Register</Link>
+        {
+          user ?
+            <button onClick={handlesignout} className='hover:text-yellow-400 transition delay-100'>Logout</button> :
+            <div className='gap-5 flex'>
+              <Link onClick={handlesignout} className='hover:text-yellow-400 transition delay-100' to={"/login"}>Login</Link>
+              <Link className='hover:text-yellow-400 transition delay-100' to={"/register"}>Register</Link>
+            </div>
+        }
       </div>
     </div>
   );
