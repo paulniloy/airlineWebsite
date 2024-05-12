@@ -1,19 +1,22 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Authprovider/Authprovider';
 
 const Navbar = () => {
 
   const {signout,setuser, user} = useContext(AuthContext);
 
+  const navigate = useNavigate()
+
 
   const handlesignout = () =>{
     signout()
     .then(()=>{
       setuser(null)
+      navigate("/login")
     })
     .catch(()=>{
-
+      
     })
   }
 

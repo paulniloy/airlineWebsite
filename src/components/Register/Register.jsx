@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Authprovider/Authprovider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SiGroupon } from 'react-icons/si';
 
 const Register = () => {
@@ -16,6 +16,8 @@ const Register = () => {
     const user = useContext(AuthContext);
     console.log(user);
 
+    const navigate = useNavigate();
+
 
 
     const handlesubmit = event => {
@@ -28,6 +30,7 @@ const Register = () => {
                 console.log(userCredential);
                 setloggedmessage('Successfully Registered')
                 seterrormessage('')
+                navigate('/')
             })
             .catch((error) => {
                 setloggedmessage('')
