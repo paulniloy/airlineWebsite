@@ -2,27 +2,35 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Authprovider/Authprovider';
 import "./login.css"
 import { SiGroupon } from "react-icons/si";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 
 
 const Login = () => {
 
-    const { googlelogin } = useContext(AuthContext)
+    const { googlelogin, signinwithpassword } = useContext(AuthContext)
 
-    const [loginchecked, setloginchecked] = useState('false')
+    const [loginchecked, setloginchecked] = useState(false)
+    const [loginerrormessage, seterrormessage] = useState('')
+    const [loginloggedmessage, setloggedmessage] = useState('')
     console.log(loginchecked);
 
 
     const handlesubmit = event => {
         event.preventDefault()
         const form = event.target;
-        const name = form.name.value;
+        const email = form.name.value;
         const password = form.password.value;
-        const namepassword = {
-            name: name, password: password
-        }
-        console.log(namepassword);
+        signinwithpassword(email, password)
+            .then((userCredential) => {
+                console.log(userCredential);
+                seterrormessage('')
+                setloggedmessage('User Successfully Logged in')
+            })
+            .catch((error) => {
+                seterrormessage("Check email/password again")
+                setloggedmessage('')
+            })
     }
 
 
@@ -37,7 +45,7 @@ const Login = () => {
                 </div>
                 <form onSubmit={handlesubmit} className='border-4 rounded-xl border-gray-200 p-10' action="">
                     <h1>Name :</h1>
-                    <input required className='p-2 bg-gray-200 rounded-xl' type="text" name="name" id="" placeholder='name' />
+                    <input required className='p-2 bg-gray-200 rounded-xl' type="email" name="name" id="" placeholder='name' />
                     <h1 className='mt-5'>Password :</h1>
                     <input required className='p-2 bg-gray-200 rounded-xl' type={loginchecked ? "text" : "password"} name="password" id="" placeholder='password' />
                     <div className='flex gap-2'>
@@ -48,7 +56,9 @@ const Login = () => {
                     <div className='flex justify-center mt-5'>
                         <button onClick={googlelogin}><SiGroupon className="h-5 w-5" /></button>
                     </div>
-                    <h1>Don't have an account? <Link to={"/register"}>Register</Link></h1>
+                    <h1>Don't have an account? <Link to={"/register"} className='text-blue-600'>Register</Link></h1>
+                    <h1 className='font-medium text-red-600'>{loginerrormessage}</h1>
+                    <h1 className='font-medium text-green-600'>{loginloggedmessage}</h1>
                 </form>
             </div>
         </div>
