@@ -1,9 +1,34 @@
-import React from 'react';
+import axios from '../../Axios';
+import React, { useEffect, useState } from 'react';
 
 const Profile = () => {
+
+    const [data, setdata] = useState([]);
+
+
+    const getapi = async () => {
+        await axios.get('/posts')
+            .then(res => {
+                setdata(res.data)
+            });
+    }
+
+    useEffect(() => {
+        getapi()
+    }, [])
+
     return (
         <div>
-            this is the profile page
+            {
+                data.slice(0, 20).map(d => {
+                    const { id, title, body } = d;
+                    return (
+                        <div className='grid p-5 border'>
+                            {id} : {title}
+                        </div>
+                    )
+                })
+            }
         </div>
     );
 };

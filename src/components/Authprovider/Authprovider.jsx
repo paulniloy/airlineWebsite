@@ -23,6 +23,7 @@ const Authprovider = ({ children }) => {
                 const user = result.user;
                 // IdP data available using getAdditionalUserInfo(result)
                 // ...
+                setloader(true)
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -53,14 +54,15 @@ const Authprovider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setuser(user)
-                setloader(false)
+                setuser(user);
+                setloader(false);
+                console.log(user);
             }
         })
         return () => {
             unsubscribe();
         }
-    }, [])
+    })
 
     const Authinfo = {
         googlelogin,

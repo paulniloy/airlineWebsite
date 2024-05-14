@@ -32,12 +32,12 @@ const Login = () => {
                 console.log(userCredential);
                 seterrormessage('')
                 setloggedmessage('User Successfully Logged in')
-                navigate("/" || from)
                 Swal.fire({
                     title: "LogIn",
                     text: "Successful!",
                     icon: "success"
                 });
+                navigate("/" || from)
             })
             .catch((error) => {
                 seterrormessage("Check email/password again")

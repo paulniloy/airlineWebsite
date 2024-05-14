@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../Authprovider/Authprovider';
+import { Bars } from 'react-loader-spinner';
 
 const Privateroute = ({ children }) => {
 
@@ -8,19 +9,28 @@ const Privateroute = ({ children }) => {
     const location = useLocation();
 
     if (loading) {
-        <div className='h-screen'>
-            <span className="loading loading-ring loading-xs"></span>
-            <span className="loading loading-ring loading-sm"></span>
-            <span className="loading loading-ring loading-md"></span>
-            <span className="loading loading-ring loading-lg"></span>
-        </div>
+
+        return (
+            <div className="flex justify-center h-screen items-center">
+                <Bars
+                    height="100"
+                    width="100"
+                    color=""
+                    ariaLabel="bars-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                />
+            </div>
+        )
+
     }
     if (user) {
         return children;
     }
 
     return (
-        <Navigate to={"/login"} state={{ from: location }}></Navigate>
+        <Navigate to={"/login"} state={{ from: location }} replace={true}></Navigate>
     );
 };
 
