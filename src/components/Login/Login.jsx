@@ -3,6 +3,7 @@ import { AuthContext } from '../Authprovider/Authprovider';
 import "./login.css"
 import { SiGroupon } from "react-icons/si";
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 
@@ -31,7 +32,12 @@ const Login = () => {
                 console.log(userCredential);
                 seterrormessage('')
                 setloggedmessage('User Successfully Logged in')
-                navigate(from)
+                navigate("/" || from)
+                Swal.fire({
+                    title: "LogIn",
+                    text: "Successful!",
+                    icon: "success"
+                });
             })
             .catch((error) => {
                 seterrormessage("Check email/password again")
