@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Authprovider/Authprovider';
 import "./login.css"
 import { SiGroupon } from "react-icons/si";
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 
 
@@ -15,6 +15,10 @@ const Login = () => {
     const [loginloggedmessage, setloggedmessage] = useState('')
 
     const navigate = useNavigate()
+    const location = useLocation();
+    console.log(location);
+
+    const from = location?.state?.from?.pathname;
 
 
     const handlesubmit = event => {
@@ -27,7 +31,7 @@ const Login = () => {
                 console.log(userCredential);
                 seterrormessage('')
                 setloggedmessage('User Successfully Logged in')
-                navigate('/')
+                navigate(from)
             })
             .catch((error) => {
                 seterrormessage("Check email/password again")
