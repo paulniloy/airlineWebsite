@@ -18,12 +18,12 @@ const Profile = () => {
     }, [])
 
     return (
-        <div>
+        <div className='grid grid-cols-4 gap-5 border-2 border-black'>
             {
                 data.slice(0, 20).map(d => {
                     const { id, title, body } = d;
                     return (
-                        <div className='grid p-5 border'>
+                        <div className='border-2 border-black p-2'>
                             {id} : {title}
                         </div>
                     )
