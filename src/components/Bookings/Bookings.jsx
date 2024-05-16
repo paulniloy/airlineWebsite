@@ -3,23 +3,33 @@ import React, { useState } from 'react';
 const Bookings = () => {
 
     const [cities] = useState(['Dhaka', "Chittagong", "Sylhet"])
-    const [fromcity, setfromcity] = useState('')
-    const [tocity, settocity] = useState('');
+    const [fromcity, setfromcity] = useState('Dhaka');
+    const [tocity, settocity] = useState("Chittagong");
     
     
     const handlesubmit = event => {
         event.preventDefault()
+        const firstname = event.target.firstname.value;
+        const lastname = event.target.lastname.value;
         const from = fromcity;
         const to = tocity
-        console.log(from, to)
+        console.log(from, to, firstname, lastname)
     }
 
     return (
         <div>
             <form onSubmit={handlesubmit}>
-                <select onChange={e=>setfromcity(e.target.value)} name="" id="">
+            <h1>First Name : </h1>
+            <input className='bg-yellow-200 text-black' type="text" name="firstname" id="" />
+            <h1>Last Name : </h1>
+            <input className='bg-yellow-200 text-black' type="text" name="lastname" id="" />
+                <select  onChange={e=>{
+                    setfromcity(e.target.value)
+                }} name="" id="">
                     {
-                        cities.map(city=>{
+                        cities.filter(item=>{
+                            return item != tocity;
+                        }).map(city=>{
                             return <option key={city} value={city}>{city}</option>
                         })
                     }
